@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, ToggleButtonGroup, ToggleButton } from "react-bootstrap";
 
-export class Ingredients extends Component {
+export class Inventory extends Component {
   state = {
     value: []
   };
@@ -14,17 +14,17 @@ export class Ingredients extends Component {
 
   handleClick = e => this.props.onClick(this.state.value);
 
-  displayIngredients() {
-    const { ingredients } = this.props;
-    return Object.keys(ingredients).map(name => {
+  displayInventory() {
+    const { inventory } = this.props;
+    return Object.keys(inventory).map(name => {
       return (
         <ToggleButton
           block
           value={name}
           key={name}
-          disabled={ingredients[name] <= 0}
+          disabled={inventory[name] <= 0}
         >
-          {ingredients[name]} {name}
+          {inventory[name]} {name}
         </ToggleButton>
       );
     });
@@ -38,7 +38,7 @@ export class Ingredients extends Component {
           value={this.state.value}
           onChange={this.handleChange}
         >
-          {this.displayIngredients()}
+          {this.displayInventory()}
         </ToggleButtonGroup>
         <Button onClick={this.handleClick} type="submit">
           Melanger

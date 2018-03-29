@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import "whatwg-fetch";
 import logo from "./logo.svg";
 import "./App.css";
-import { Ingredients } from "./ingredients";
+import { Inventory } from "./inventory";
 
 class App extends Component {
   state = {
-    response: ""
+    inventory: {}
   };
 
   componentDidMount() {
-    this.callApi()
-      .then(res => this.setState({ response: res.express }))
+    this.getInventory()
+      .then(res => this.setState({ inventory: res.inventory }))
       .catch(err => console.log(err));
   }
 
@@ -20,22 +20,14 @@ class App extends Component {
     return Promise.resolve();
   };
 
-  callApi = async () => {
-    const response = await fetch("/api/hello");
+  getInventory = async () => {
+    const response = await fetch("/inventory");
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
     return body;
   };
 
   render() {
-    const mockedIngredients = {
-      A: 1,
-      B: 2,
-      C: 3,
-      D: 4,
-      E: 0,
-      F: 1
-    };
     return (
       <div className="App">
         <header className="App-header">
@@ -43,8 +35,8 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <div className="container">
-          <Ingredients
-            ingredients={mockedIngredients}
+          <Inventory
+            inventory={this.state.inventory}
             onClick={this.handleClick}
           />
         </div>
