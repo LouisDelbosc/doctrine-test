@@ -23,8 +23,13 @@ app.get("/inventory", (req, res) => {
 });
 
 app.post("/mix", (req, res) => {
-  const potion = alchemy.mixPotion(req.body);
-  res.send({ potion });
+  try {
+    const potion = alchemy.mixPotion(req.body);
+    res.send({ potion });
+  } catch (err) {
+    res.status(400);
+    res.send({ message: err.message });
+  }
 });
 
 module.exports = app;

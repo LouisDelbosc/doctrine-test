@@ -35,7 +35,7 @@ class App extends Component {
           alert(`Bravo ! Voici ce que vous venez de fabriquer : ${e}`);
         },
         error => {
-          alert(`Recette inconnu`);
+          alert(error.message);
         }
       )
       .then(this.getInventory);
