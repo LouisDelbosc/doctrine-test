@@ -1,3 +1,5 @@
+const R = require("ramda");
+
 function initInventory() {
   return require("./data/inventory.json");
 }
@@ -9,9 +11,7 @@ function isItemAvailable(inventory, item) {
 }
 
 function areItemsAvailable(inventory, items) {
-  return items
-    .map(item => isItemAvailable(inventory, item))
-    .reduce((acc, value) => acc && value, true);
+  return R.all(Boolean)(items.map(item => isItemAvailable(inventory, item)));
 }
 
 function subItem(inventory, item) {
