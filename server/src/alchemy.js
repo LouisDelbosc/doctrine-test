@@ -12,14 +12,13 @@ function Alchemy(inventory, recipes) {
     inventory,
     recipes,
     mixPotion: function(ingredients) {
-      if (
-        areItemsAvailable(inventory, ingredients) &&
-        isRecipeValid(recipes, ingredients)
-      ) {
+      if (areItemsAvailable(inventory, ingredients)) {
         subItems(inventory, ingredients);
-        return getPotion(recipes, ingredients);
+        if (isRecipeValid(recipes, ingredients))
+          return getPotion(recipes, ingredients);
+        throw Error("Recette incorrecte");
       }
-      throw Error("Recette incorrecte");
+      throw Error("Ingredients non disponibles");
     }
   };
 }

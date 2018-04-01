@@ -27,11 +27,16 @@ describe("alchemy", () => {
     });
   });
 
-  it("throw an exception if no recipes", () => {
+  it("throw an exception if no recipes but remove ingredients from inventory", () => {
     const inventory = { item1: 1, item2: 1, item3: 1 };
     const alchemy = Alchemy(inventory, {});
-    expect(() =>
-      Alchemy(inventory, {}).mixPotion(["item1", "item2", "item3"])
-    ).toThrowError("Recette incorrecte");
+    expect(() => alchemy.mixPotion(["item1", "item2", "item3"])).toThrowError(
+      "Recette incorrecte"
+    );
+    expect(alchemy.inventory).toEqual({
+      item1: 0,
+      item2: 0,
+      item3: 0
+    });
   });
 });
