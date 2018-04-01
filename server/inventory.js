@@ -14,8 +14,21 @@ function areItemsAvailable(inventory, items) {
     .reduce((acc, value) => acc && value, true);
 }
 
+function subItem(inventory, item) {
+  if (!inventory[item])
+    throw Error("Cannot substract the item to the inventory");
+  inventory[item] -= 1;
+  return inventory;
+}
+
+function subItems(inventory, items) {
+  return items.reduce((acc, item) => subItem(acc, item), inventory);
+}
+
 module.exports = {
   initInventory,
   isItemAvailable,
-  areItemsAvailable
+  areItemsAvailable,
+  subItem,
+  subItems
 };
