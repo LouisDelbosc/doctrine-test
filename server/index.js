@@ -20,4 +20,8 @@ app.get("/inventory", (req, res) => {
   });
 });
 
+app.post("/mix", (req, res) => {
+  res.send({ mix: "potion d'invisibilite" });
+});
+
 app.listen(port, () => console.log(`Listening on port ${port}`));

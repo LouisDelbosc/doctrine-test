@@ -12,7 +12,10 @@ export class Inventory extends Component {
     }
   };
 
-  handleClick = e => this.props.onClick(this.state.value);
+  handleClick = e => {
+    this.setState({ value: [] });
+    this.props.onClick(this.state.value);
+  };
 
   displayInventory() {
     const { inventory } = this.props;

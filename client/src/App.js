@@ -15,12 +15,35 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  mixIngredients = async ingredients => {
+    const response = await fetch("/mix", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(ingredients)
+    });
+    const body = await response.json();
+    if (response.status !== 200) throw Error(body.message);
+    return body.mix;
+  };
+
   handleClick = value => {
     console.log("state", value);
-    return Promise.resolve();
+    return this.mixIngredients(value)
+      .then(
+        e => {
+          alert(`Bravo ! Voici ce que vous venez de fabriquer : ${e}`);
+        },
+        error => {
+          alert(`Recette inconnu`);
+        }
+      )
+      .then(this.getInventory);
   };
 
   getInventory = async () => {
+    console.log("toto");
     const response = await fetch("/inventory");
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
