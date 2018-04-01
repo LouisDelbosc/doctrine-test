@@ -1,3 +1,7 @@
 {
-  "Invisibilité": ["Jus de citron", "Piment", "Pattes de pigeon"]
+  "Invisibilité": ["Jus de citron", "Piment", "Pattes de pigeon"],
+  "Jeunesse": ["Argent", "Moule abyssale", "Arsenic"],
+  "Deodorant": ["Persil", "Jus de citron", "Cendres"],
+  "A": ["Or", "Bave de lama", "Mercure"],
+  "B": ["Argent", "Piment", "Cendres"]
 }

@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   mixIngredients = async ingredients => {
-    const response = await fetch("/mix", {
+    const response = await fetch("/potion", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

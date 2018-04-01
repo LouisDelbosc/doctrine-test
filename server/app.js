@@ -22,7 +22,7 @@ app.get("/inventory", (req, res) => {
   });
 });
 
-app.post("/mix", (req, res) => {
+app.post("/potion", (req, res) => {
   try {
     const potion = alchemy.mixPotion(req.body);
     res.send({ potion });
