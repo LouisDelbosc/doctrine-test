@@ -1,8 +1,9 @@
 const express = require("express");
+const { initInventory } = require("./inventory.js");
 
 const app = express();
 
-const inventory = require("./data/inventory.json");
+const inventory = initInventory();
 
 app.get("/api/hello", (req, res) => {
   res.send({ express: "Hello From Express" });
