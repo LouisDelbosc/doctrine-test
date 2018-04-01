@@ -10,9 +10,9 @@ class App extends Component {
   };
 
   componentDidMount() {
-    this.getInventory()
-      .then(res => this.setState({ inventory: res.inventory }))
-      .catch(err => console.log(err));
+    this.getInventory().then(res =>
+      this.setState({ inventory: res.inventory })
+    );
   }
 
   mixIngredients = async ingredients => {
@@ -38,7 +38,8 @@ class App extends Component {
           alert(error.message);
         }
       )
-      .then(this.getInventory);
+      .then(this.getInventory)
+      .then(res => this.setState({ inventory: res.inventory }));
   };
 
   getInventory = async () => {
