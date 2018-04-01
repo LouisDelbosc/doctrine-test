@@ -25,11 +25,10 @@ class App extends Component {
     });
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);
-    return body.mix;
+    return body.potion;
   };
 
   handleClick = value => {
-    console.log("state", value);
     return this.mixIngredients(value)
       .then(
         e => {
@@ -43,7 +42,6 @@ class App extends Component {
   };
 
   getInventory = async () => {
-    console.log("toto");
     const response = await fetch("/inventory");
     const body = await response.json();
     if (response.status !== 200) throw Error(body.message);

@@ -1,9 +1,16 @@
 const express = require("express");
-const { initInventory } = require("./inventory.js");
+const bodyParser = require("body-parser");
+const { initAlchemyFromJSON } = require("./alchemy.js");
 
 const app = express();
 
-const inventory = initInventory();
+const alchemy = initAlchemyFromJSON(
+  "./data/inventory.json",
+  "./data/recipe.json"
+);
+
+app.use(bodyParser.urlencoded());
+app.use(bodyParser.json());
 
 app.get("/api/hello", (req, res) => {
   res.send({ express: "Hello From Express" });
@@ -11,12 +18,13 @@ app.get("/api/hello", (req, res) => {
 
 app.get("/inventory", (req, res) => {
   res.send({
-    inventory
+    inventory: alchemy.inventory
   });
 });
 
 app.post("/mix", (req, res) => {
-  res.send({ mix: "potion d'invisibilite" });
+  const potion = alchemy.mixPotion(req.body);
+  res.send({ potion });
 });
 
 module.exports = app;
