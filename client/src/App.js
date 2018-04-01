@@ -54,7 +54,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">The Alchemy Machine</h1>
         </header>
-        <div className="container">
+        <div className="container" style={{ width: "500px" }}>
           <Inventory
             inventory={this.state.inventory}
             onClick={this.handleClick}
